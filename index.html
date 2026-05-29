@@ -734,7 +734,7 @@
     >
 
     <script>
-      /* ── NAV scroll ── */
+      /*NAV scroll*/
       const nav = document.getElementById("nav");
       window.addEventListener("scroll", () => {
         nav.classList.toggle("scrolled", window.scrollY > 50);
@@ -772,7 +772,7 @@
         });
       }
 
-      /* ── Scroll reveal ── */
+      /*Scroll reveal*/
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
@@ -788,7 +788,7 @@
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
 
-      /* ── Scroll top ── */
+      /*Scroll top*/
       const scrollBtn = document.getElementById("scrollTopBtn");
       if (scrollBtn)
         scrollBtn.addEventListener("click", (e) => {
@@ -796,7 +796,7 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-      /* ── Contact form (Formspree) ── */
+      /*Contact form (Formspree)*/
       const form = document.getElementById("contactForm");
       const feedback = document.getElementById("formFeedback");
       const submitBtn = document.getElementById("submitBtn");
@@ -821,12 +821,12 @@
               form.reset();
             } else {
               feedback.textContent =
-                "❌ Algo salió mal. Escríbeme directo al email.";
+                "Algo salió mal. Escríbeme directo al email.";
               feedback.style.color = "#ff8a7a";
             }
           } catch {
             feedback.textContent =
-              "❌ Sin conexión. Escríbeme directo al email.";
+              "Sin conexión. Escríbeme directo al email.";
             feedback.style.color = "#ff8a7a";
           } finally {
             submitBtn.textContent = "Enviar mensaje ✦";
@@ -838,7 +838,7 @@
         });
       }
 
-      /* ── LIGHTBOX ── */
+      /*LIGHTBOX*/
       const lightbox = document.getElementById("lightbox");
       const lbImg = document.getElementById("lbImg");
       const lbCaption = document.getElementById("lbCaption");
