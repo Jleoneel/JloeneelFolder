@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Janerson Arrunategui · Ingeniero en Software</title>
+    <meta
+      name="description"
+      content="Portafolio de Janerson Arrunategui, Ingeniero en Software especializado en sistemas web institucionales. Experiencia en Ministerio de Salud, IESS y desarrollo full stack."
+    />
+    <meta name="author" content="Janerson Arrunategui" />
+    <meta
+      name="keywords"
+      content="ingeniero software, full stack, react, nodejs, portafolio, ecuador"
+    />
+    <meta
+      property="og:title"
+      content="Janerson Arrunategui · Ingeniero en Software"
+    />
+    <meta
+      property="og:description"
+      content="Sistemas web robustos para instituciones públicas. Especialista en React, Node.js y PostgreSQL."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/0d1525/38bdf8?text=JA"
+    />
+    <meta name="theme-color" content="#080e1a" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23080e1a'/%3E%3Ctext x='50' y='67' font-size='60' text-anchor='middle' fill='%2338bdf8' font-family='monospace'%3EJA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- LIGHTBOX GLOBAL -->
+    <div
+      id="lightbox"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Vista de imagen"
+    >
+      <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+      <button class="lb-prev" id="lbPrev" aria-label="Imagen anterior">
+        ‹
+      </button>
+      <button class="lb-next" id="lbNext" aria-label="Imagen siguiente">
+        ›
+      </button>
+      <div class="lb-wrapper">
+        <img id="lbImg" src="" alt="" />
+        <div class="lb-caption" id="lbCaption"></div>
+        <div class="lb-counter" id="lbCounter"></div>
+      </div>
+    </div>
+
+    <nav id="nav">
+      <div class="nav-inner">
+        <a href="#" class="logo" aria-label="Inicio"
+          >JA<span class="dot">.</span></a
+        >
+        <button
+          class="menu-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section id="hero">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <span class="greeting">// Hola, soy</span>
+            <h1>Janerson<span>Arrunategui</span></h1>
+            <p class="hero-role">
+              Ingeniero en Software · Full Stack Developer
+            </p>
+            <p class="hero-tagline">
+              Transformo procesos manuales en sistemas web que funcionan — desde
+              la base de datos hasta el frontend.
+            </p>
+            <div class="hero-ctas">
+              <a href="#proyectos" class="btn-primary">Ver Proyectos</a>
+              <a href="assets/cv-janerson-arrunategui.pdf" download="cv-janerson-arrunategui.pdf" class="btn-outline">↓ Descargar CV              </a>
+              <a href="#contacto" class="btn-primary">Contactar</a>
+            </div>
+          </div>
+          <div class="terminal" aria-label="Terminal de presentación">
+            <div class="terminal-bar">
+              <div class="t-dot r"></div>
+              <div class="t-dot y"></div>
+              <div class="t-dot g"></div>
+              <span class="t-fname">janerson.config.js</span>
+            </div>
+            <div class="terminal-body">
+              <span class="tc">// Ingeniero en Software · Ecuador</span
+              ><br /><br />
+              <span class="tk">const</span> <span class="tv">dev</span> = {<br />
+              &nbsp;&nbsp;<span class="ts">nombre</span>:
+              <span class="ta">"Janerson Arrunategui"</span>,<br />
+              &nbsp;&nbsp;<span class="ts">rol</span>:
+              <span class="ta">"Full Stack Developer"</span>,<br />
+              &nbsp;&nbsp;<span class="ts">stack</span>: [<span class="ta"
+                >"React"</span
+              >, <span class="ta">"Node.js"</span>,
+              <span class="ta">"PostgreSQL"</span>,
+              <span class="ta">"Express"</span>],<br />
+              &nbsp;&nbsp;<span class="ts">experiencia</span>: [<span class="ta"
+                >"Ministerio de Salud"</span
+              >, <span class="ta">"IESS Ecuador"</span>],<br />
+              &nbsp;&nbsp;<span class="ts">titulacion</span>:
+              <span class="ta">"Ing. Software · UTM 2026"</span>,<br />
+              &nbsp;&nbsp;<span class="ts">status</span>:
+              <span class="tn">"disponible"</span><br />
+              };<br /><br />
+              <span class="tc"
+                >// Listo para construir algo que haga la diferencia</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE MÍ -->
+      <section id="sobre-mi">
+        <p class="section-label">Sobre mí</p>
+        <div class="about-grid reveal">
+          <div class="about-card">
+            <div class="avatar" aria-hidden="true">JA</div>
+            <div class="a-name">Janerson Arrunategui</div>
+            <div class="a-handle">@jleoneel</div>
+            <div class="status-badge">Disponible · Remoto &amp; Presencial</div>
+            <div class="a-links">
+              <a
+                href="https://www.linkedin.com/in/janerson-arrunategui"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="a-link"
+                >↗ LinkedIn</a
+              >
+              <a href="mailto:janersonarruwork@gmail.com" class="a-link"
+                >↗ Email</a
+              >
+              <a
+                href="https://github.com/Jleoneel"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="a-link"
+                >↗ GitHub</a
+              >
+            </div>
+          </div>
+          <div class="about-text">
+            <p>
+              <strong>Ingeniero en Software</strong> con experiencia real en el
+              desarrollo de sistemas web institucionales. No proyectos de
+              práctica — sistemas que se usan en instituciones.
+            </p>
+            <p>
+              He desarrollado aplicaciones para el
+              <strong>Ministerio de Salud del Ecuador</strong> y el
+              <strong>IESS</strong>: desde el modelado de base de datos hasta el
+              frontend, pasando por APIs REST, gestión de roles, flujos de
+              aprobación y generación automática de documentos.
+            </p>
+            <p>
+              Me especializo en digitalizar procesos manuales y convertirlos en
+              sistemas robustos, escalables y fáciles de usar. Abierto a empleo,
+              freelance y colaboraciones remotas o presenciales.
+            </p>
+            <div class="stats-row">
+              <div class="stat">
+                <div class="stat-num">4</div>
+                <div class="stat-label">Proyectos destacables</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">2+</div>
+                <div class="stat-label">Años de experiencia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section id="stack">
+        <p class="section-label">Stack tecnológico</p>
+        <h2 class="section-title">Herramientas que domino</h2>
+        <div class="stack-grid">
+          <div class="stack-item reveal">
+            <span class="s-icon">⚛️</span><span class="s-name">React</span
+            ><span class="s-type">Frontend</span>
+          </div>
+          <div class="stack-item reveal d1">
+            <span class="s-icon">🟩</span><span class="s-name">Node.js</span
+            ><span class="s-type">Backend</span>
+          </div>
+          <div class="stack-item reveal d2">
+            <span class="s-icon">🐘</span><span class="s-name">PostgreSQL</span
+            ><span class="s-type">Database</span>
+          </div>
+          <div class="stack-item reveal d3">
+            <span class="s-icon">🚀</span><span class="s-name">Express</span
+            ><span class="s-type">Framework</span>
+          </div>
+          <div class="stack-item reveal">
+            <span class="s-icon">🎨</span><span class="s-name">TailwindCSS</span
+            ><span class="s-type">Styling</span>
+          </div>
+          <div class="stack-item reveal d1">
+            <span class="s-icon">🔶</span><span class="s-name">JavaScript</span
+            ><span class="s-type">Lenguaje</span>
+          </div>
+          <div class="stack-item reveal d2">
+            <span class="s-icon">🐍</span><span class="s-name">Python</span
+            ><span class="s-type">Lenguaje</span>
+          </div>
+          <div class="stack-item reveal d3">
+            <span class="s-icon">🔧</span><span class="s-name">Git</span
+            ><span class="s-type">Versiones</span>
+          </div>
+          <div class="stack-item reveal">
+            <span class="s-icon">🐧</span><span class="s-name">Linux</span
+            ><span class="s-type">SO</span>
+          </div>
+          <div class="stack-item reveal d1">
+            <span class="s-icon">📱</span><span class="s-name">Android</span
+            ><span class="s-type">Mobile · en curso</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROYECTOS -->
+      <section id="proyectos">
+        <p class="section-label">Proyectos</p>
+        <h2 class="section-title">Lo que he construido</h2>
+        <div class="projects-grid">
+          <!-- PROYECTO 1: SITH -->
+          <div class="project-card reveal">
+            <div class="p-inst">
+              Hospital Provincial Verdi Cevallos Balda · Portoviejo, Ecuador
+            </div>
+            <div class="p-header">
+              <div class="p-name">
+                SITH — Sistema Integral de Talento Humano (HPVCB)
+              </div>
+              <div class="p-period">ene 2026 — presente</div>
+            </div>
+            <p class="p-desc">
+              Sistema web institucional full-stack que digitalizó y automatizó
+              completamente la gestión del talento humano del Hospital
+              Provincial Verdi Cevallos Balda, reemplazando flujos manuales
+              basados en documentos físicos. Implementado en producción con
+              datos reales sobre infraestructura virtualizada (Proxmox) con alta
+              disponibilidad.
+            </p>
+            <ul class="p-bullets">
+              <li>
+                Firma digital con certificados .p12 del BCE Ecuador (Security
+                Data S.A.) integrada en el backend — generando PDFs con QR de
+                verificación, recuadro visual y firma criptográfica válida
+              </li>
+              <li>
+                Flujo multi-nivel de aprobación con 5 firmantes en 3 roles
+                distintos (Asistente UATH, Responsable UATH y Gerente
+                Hospitalario)
+              </li>
+              <li>
+                Generación automática de PDFs institucionales con pdf-lib,
+                incluyendo marcado dinámico de checkboxes y datos del servidor
+              </li>
+              <li>
+                Notificaciones en tiempo real con SSE y correos automáticos con
+                plantillas HTML mediante Nodemailer y Brevo
+              </li>
+              <li>
+                Importación masiva desde distributivo posicional Excel, gestión
+                de saldos con acumulación automática vía cron jobs
+              </li>
+              <li>
+                Despliegue con PM2 + Nginx en Ubuntu Server sobre Proxmox con
+                VLANs y múltiples interfaces de red
+              </li>
+            </ul>
+            <!-- GALERÍA SITH -->
+            <div class="gallery-label">Módulo de Acciones de Personal</div>
+            <div class="project-gallery" data-gallery="sith">
+              <img
+                src="assets/img/SITH/sith-00.png"
+                alt="Login"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-01.png"
+                alt="Dashboard SITH"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-02.png"
+                alt="Lista de acciones creadas"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-03.png"
+                alt="flujo de firmas electronicas"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-04.png"
+                alt="PDF institucional generado"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-05.png"
+                alt="Adjuntar certificado digital para la firma electrónica"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="gallery-label">Módulo de permisos y vacaciones</div>
+            <div class="project-gallery" data-gallery="sith">
+              <img
+                src="assets/img/SITH/sith-06.png"
+                alt="Gestión de permisos"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-07.png"
+                alt="Asignación de jefes a áreas/unidades"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-08.png"
+                alt="Solicitud de vacaciones"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-09.png"
+                alt="Bandeja de aprobacón del jefe inmediato"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-10.png"
+                alt="Reporte de vacaciones"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/SITH/sith-11.png"
+                alt="PDF generado de la solicitud"
+                loading="lazy"
+              />
+            </div>
+            <div class="tech-tags">
+              <span class="tech-tag">React</span
+              ><span class="tech-tag">Node.js</span
+              ><span class="tech-tag">Express</span>
+              <span class="tech-tag">PostgreSQL</span
+              ><span class="tech-tag">TailwindCSS</span
+              ><span class="tech-tag">JWT</span>
+              <span class="tech-tag">pdf-lib</span
+              ><span class="tech-tag">Firma Digital BCE</span
+              ><span class="tech-tag">SSE</span>
+              <span class="tech-tag">Nodemailer</span
+              ><span class="tech-tag">PM2</span
+              ><span class="tech-tag">Nginx</span>
+              <span class="tech-tag">Proxmox</span
+              ><span class="tech-tag">Linux</span
+              ><span class="tech-tag">Git</span>
+            </div>
+          </div>
+
+          <!-- PROYECTO 2: CABA -->
+          <div class="project-card purple reveal">
+            <div class="p-inst">
+              Universidad Técnica de Manabí · Proyecto de Tesis
+            </div>
+            <div class="p-header">
+              <div class="p-name">
+                CABA — Sistema ERP de Trazabilidad de Laboratorio (UTM)
+              </div>
+              <div class="p-period">ene 2026 — presente</div>
+            </div>
+            <p class="p-desc">
+              Sistema ERP institucional full-stack que digitalizó y automatizó
+              completamente el flujo operativo del Centro de Análisis Biológico
+              y Agroalimentario de la UTM, reemplazando procesos manuales en
+              papel por trazabilidad digital total desde la cotización hasta la
+              entrega de resultados.
+            </p>
+            <ul class="p-bullets">
+              <li>
+                Flujo operativo end-to-end: Cotización → Aprobación → Solicitud
+                → Muestras → Análisis → Resultados → Informe PDF/DOCX
+              </li>
+              <li>
+                Generación automática de Acuerdo de Confidencialidad conforme a
+                la Norma NTE INEN-ISO/IEC 17025:2018 y criterios SAE
+              </li>
+              <li>
+                Identificación de muestras con QR escaneable — el cliente accede
+                al estado de su muestra en tiempo real sin autenticación
+              </li>
+              <li>
+                Notificaciones SSE en tiempo real para análisis pendientes,
+                calibración de equipos y stock bajo de reactivos
+              </li>
+              <li>
+                Módulo de inventario de reactivos con trazabilidad de consumos
+                por análisis y gestión de calibración de equipos
+              </li>
+              <li>
+                Kanban de producción con polling en tiempo real para analistas,
+                mensajería interna y reportes con Highcharts
+              </li>
+            </ul>
+            <div class="gallery-label">
+              Proceso de cotización y trazabilidad
+            </div>
+            <!-- GALERÍA CABA — reemplaza los src con tus capturas reales -->
+            <div class="project-gallery" data-gallery="caba">
+              <img
+                src="assets/img/CABA/caba-00.png"
+                alt="Login"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-01.png"
+                alt="Modulo de cotización"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-02.png"
+                alt="Modulo de solicitudes"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-03.png"
+                alt="Kanban de analisis"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-04.png"
+                alt="detalles de la muestra"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-05.png"
+                alt="Etiqueta QR de la muestra"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-06.png"
+                alt="Vista del analista con su analisis asignado"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-07.png"
+                alt="Analista y su page para registrar resultados"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="gallery-label">Módulo de inventario y otros</div>
+
+            <!-- GALERÍA CABA — módulo de inventario y otros -->
+            <div class="project-gallery" data-gallery="caba">
+              <img
+                src="assets/img/CABA/caba-08.png"
+                alt="Inventario de reactivos"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-09.png"
+                alt="Inventario de equipos"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-10.png"
+                alt="Documentación"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-11.png"
+                alt="Catalogos de clientes"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-12.png"
+                alt="Catalogos de analisis"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-13.png"
+                alt="Catalogos de usuarios del sistema"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-14.png"
+                alt="Modulo de mensajeria"
+                loading="lazy"
+              />
+              <img
+                src="assets/img/CABA/caba-15.png"
+                alt="Reportes"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="tech-tags">
+              <span class="tech-tag">React 19</span
+              ><span class="tech-tag">Node.js</span
+              ><span class="tech-tag">Express</span>
+              <span class="tech-tag">PostgreSQL</span
+              ><span class="tech-tag">Prisma</span
+              ><span class="tech-tag">TailwindCSS</span>
+              <span class="tech-tag">JWT</span
+              ><span class="tech-tag">pdf-lib</span
+              ><span class="tech-tag">QR Code</span>
+              <span class="tech-tag">SSE</span
+              ><span class="tech-tag">Highcharts</span
+              ><span class="tech-tag">SheetJS</span>
+              <span class="tech-tag">PM2</span
+              ><span class="tech-tag">Nginx</span
+              ><span class="tech-tag">Linux</span
+              ><span class="tech-tag">Git</span>
+            </div>
+          </div>
+
+          <!-- PROYECTO 3: IESS -->
+          <div class="project-card gold reveal">
+            <div class="p-inst">Instituto Ecuatoriano de Seguridad Social</div>
+            <div class="p-header">
+              <div class="p-name">
+                Módulo de Gestión de Derivaciones Médicas
+              </div>
+              <div class="p-period">mar — jun 2025</div>
+            </div>
+            <p class="p-desc">
+              Desarrollo del módulo de Derivaciones Médicas dentro de un sistema
+              hospitalario del IESS, gestionando relaciones complejas entre
+              diagnósticos CIE-10 y procedimientos tarifarios en un entorno de
+              producción institucional.
+            </p>
+            <ul class="p-bullets">
+              <li>
+                Modelo relacional con integridad garantizada mediante
+                operaciones controladas DELETE + INSERT
+              </li>
+              <li>
+                Optimización de búsquedas masivas con Select2 asincrónico —
+                rendimiento mejorado en catálogos clínicos de gran volumen
+              </li>
+              <li>
+                Wizard transaccional de 4 pasos para gestión de derivaciones con
+                validación en cada etapa
+              </li>
+              <li>
+                Refactorización SQL y corrección de flujos en sistema
+                hospitalario activo
+              </li>
+            </ul>
+            <!-- GALERÍA IESS — reemplaza los src con tus capturas reales
+            <div class="project-gallery" data-gallery="iess">
+              <img src="assets/img/iess-01.png" alt="Módulo de derivaciones" loading="lazy" />
+              <img src="assets/img/iess-02.png" alt="Wizard de 4 pasos" loading="lazy" />
+              <img src="assets/img/iess-03.png" alt="Búsqueda CIE-10" loading="lazy" />
+            </div> -->
+            <div class="tech-tags">
+              <span class="tech-tag">JavaScript</span
+              ><span class="tech-tag">jQuery</span>
+              <span class="tech-tag">SQL</span
+              ><span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Select2</span
+              ><span class="tech-tag">Git</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIA -->
+      <section id="experiencia">
+        <p class="section-label">Experiencia &amp; Educación</p>
+        <h2 class="section-title">Trayectoria profesional</h2>
+        <div class="exp-timeline reveal">
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-date">
+              enero 2026 — Junio 2026 · Portoviejo, Ecuador
+            </div>
+            <div class="exp-role">Ingeniero de Desarrollo de Software</div>
+            <div class="exp-company">
+              Ministerio de Salud del Ecuador · Contrato temporal
+            </div>
+            <div class="exp-desc">
+              Diseño y desarrollo completo de sistema web institucional para
+              digitalización de procesos de Recursos Humanos. Trabajo full
+              stack: modelado de BD, APIs REST, frontend React y despliegue en
+              entorno Linux.
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-date">marzo 2025 — junio 2025 · Manta, Ecuador</div>
+            <div class="exp-role">Ingeniero de Desarrollo de Software</div>
+            <div class="exp-company">
+              Instituto Ecuatoriano de Seguridad Social (IESS) · Prácticas
+            </div>
+            <div class="exp-desc">
+              Desarrollo de módulos en sistema hospitalario institucional
+              activo. Optimización de rendimiento, refactorización SQL y
+              construcción de flujos transaccionales complejos en entorno de
+              producción.
+            </div>
+          </div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Ingeniería en Software</div>
+            <div class="edu-school">Universidad Técnica de Manabí</div>
+            <div class="edu-period">2022 — 2026</div>
+          </div>
+          <div class="grad-badge">Graduación 2026 ✦</div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <div class="contact-inner reveal">
+          <p class="section-label">Contacto</p>
+          <h2 class="section-title">¿Hablamos?</h2>
+          <p class="contact-text">
+            Estoy abierto a oportunidades de empleo, proyectos freelance y
+            colaboraciones. Si tienes un proyecto en mente o una vacante que
+            encaja, escríbeme — respondo rápido.
+          </p>
+          <a href="mailto:janersonarruwork@gmail.com" class="contact-email"
+            >janersonarruwork@gmail.com</a
+          >
+          <div class="contact-form">
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/mqejnywq"
+              method="POST"
+            >
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email_contact">Correo</label>
+                <input
+                  type="email"
+                  id="email_contact"
+                  name="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="3"
+                  placeholder="¿En qué puedo ayudarte?"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit" id="submitBtn">
+                Enviar mensaje ✦
+              </button>
+              <div id="formFeedback" class="form-message"></div>
+            </form>
+          </div>
+          <div class="social-links">
+            <a
+              href="https://www.linkedin.com/in/janerson-arrunategui"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              >↗ LinkedIn</a
+            >
+            <a
+              href="https://github.com/Jleoneel"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              >↗ GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Diseñado y construido por Janerson Arrunategui · 2026</p>
+    </footer>
+
+    <a href="#" class="scroll-top" id="scrollTopBtn" aria-label="Volver arriba"
+      >↑</a
+    >
+
+    <script>
+      /* ── NAV scroll ── */
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("scrolled", window.scrollY > 50);
+        document
+          .getElementById("scrollTopBtn")
+          .classList.toggle("visible", window.scrollY > 400);
+      });
+
+      /* ── Mobile menu ── */
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+      if (menuToggle && navLinks) {
+        const toggleMenu = (open) => {
+          const isOpen =
+            open !== undefined ? open : !navLinks.classList.contains("open");
+          navLinks.classList.toggle("open", isOpen);
+          menuToggle.classList.toggle("active", isOpen);
+          menuToggle.setAttribute("aria-expanded", isOpen);
+          document.body.classList.toggle("menu-open", isOpen);
+        };
+        menuToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleMenu();
+        });
+        navLinks
+          .querySelectorAll("a")
+          .forEach((l) => l.addEventListener("click", () => toggleMenu(false)));
+        document.addEventListener("click", (e) => {
+          if (
+            !navLinks.contains(e.target) &&
+            !menuToggle.contains(e.target) &&
+            navLinks.classList.contains("open")
+          )
+            toggleMenu(false);
+        });
+      }
+
+      /* ── Scroll reveal ── */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -20px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      /* ── Scroll top ── */
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      if (scrollBtn)
+        scrollBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+      /* ── Contact form (Formspree) ── */
+      const form = document.getElementById("contactForm");
+      const feedback = document.getElementById("formFeedback");
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          submitBtn.textContent = "Enviando...";
+          submitBtn.disabled = true;
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+              feedback.textContent = "¡Mensaje enviado! Te respondo pronto.";
+              feedback.style.color = "#27c93f";
+              form.reset();
+            } else {
+              feedback.textContent =
+                "❌ Algo salió mal. Escríbeme directo al email.";
+              feedback.style.color = "#ff8a7a";
+            }
+          } catch {
+            feedback.textContent =
+              "❌ Sin conexión. Escríbeme directo al email.";
+            feedback.style.color = "#ff8a7a";
+          } finally {
+            submitBtn.textContent = "Enviar mensaje ✦";
+            submitBtn.disabled = false;
+            setTimeout(() => {
+              feedback.textContent = "";
+            }, 5000);
+          }
+        });
+      }
+
+      /* ── LIGHTBOX ── */
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lbImg");
+      const lbCaption = document.getElementById("lbCaption");
+      const lbCounter = document.getElementById("lbCounter");
+      const lbClose = document.getElementById("lbClose");
+      const lbPrev = document.getElementById("lbPrev");
+      const lbNext = document.getElementById("lbNext");
+
+      let currentGallery = [];
+      let currentIndex = 0;
+
+      const openLightbox = (imgs, index) => {
+        currentGallery = imgs;
+        currentIndex = index;
+        updateLightbox();
+        lightbox.classList.add("open");
+        document.body.classList.add("lb-open");
+        lbClose.focus();
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        document.body.classList.remove("lb-open");
+      };
+
+      const updateLightbox = () => {
+        const img = currentGallery[currentIndex];
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCaption.textContent = img.alt;
+        lbCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+        lbPrev.style.visibility = currentIndex > 0 ? "visible" : "hidden";
+        lbNext.style.visibility =
+          currentIndex < currentGallery.length - 1 ? "visible" : "hidden";
+      };
+
+      const showPrev = () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateLightbox();
+        }
+      };
+      const showNext = () => {
+        if (currentIndex < currentGallery.length - 1) {
+          currentIndex++;
+          updateLightbox();
+        }
+      };
+
+      /* Registra clicks en cada galería */
+      document.querySelectorAll(".project-gallery").forEach((gallery) => {
+        const imgs = Array.from(gallery.querySelectorAll("img"));
+        imgs.forEach((img, i) => {
+          img.addEventListener("click", () => openLightbox(imgs, i));
+        });
+      });
+
+      lbClose.addEventListener("click", closeLightbox);
+      lbPrev.addEventListener("click", showPrev);
+      lbNext.addEventListener("click", showNext);
+
+      /* Cierra al hacer click en el fondo */
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      /* Navegación con teclado */
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "ArrowRight") showNext();
+      });
+
+      /* Swipe táctil en móvil */
+      let touchStartX = 0;
+      lightbox.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      lightbox.addEventListener("touchend", (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? showNext() : showPrev();
+        }
+      });
+    </script>
+  </body>
+</html>
