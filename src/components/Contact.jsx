@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Check, Send } from 'lucide-react'
-import { profile } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import SectionHeader from './SectionHeader.jsx'
 import Reveal from './Reveal.jsx'
 
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID
 
-const channels = [
-  ['correo', profile.email, `mailto:${profile.email}`],
-  ['whatsapp', profile.phone, profile.whatsapp],
-  ['linkedin', 'in/janerson-arrunategui', profile.linkedin],
-  ['github', 'github.com/Jleoneel', profile.github],
-  ['certificados', 'Certificaciones laborales', profile.certifications],
+const channelsFor = (profile, t) => [
+  [t.channels.email, profile.email, `mailto:${profile.email}`],
+  [t.channels.whatsapp, profile.phone, profile.whatsapp],
+  [t.channels.linkedin, 'in/janerson-arrunategui', profile.linkedin],
+  [t.channels.github, 'github.com/Jleoneel', profile.github],
+  [t.channels.certs, t.certsValue, profile.certifications],
 ]
 
 function Field({ label, name, type = 'text', required, textarea, autoComplete, placeholder }) {
@@ -37,6 +37,10 @@ function Field({ label, name, type = 'text', required, textarea, autoComplete, p
 }
 
 export default function Contact() {
+  const { t: all, c } = useI18n()
+  const t = all.contact
+  const profile = c.profile
+  const channels = channelsFor(profile, t)
   const [status, setStatus] = useState('idle')
 
   async function onSubmit(e) {
@@ -49,9 +53,7 @@ export default function Contact() {
       const body = `${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})${
         data.get('company') ? `, ${data.get('company')}` : ''
       }`
-      window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
-        'Contacto desde el portafolio',
-      )}&body=${encodeURIComponent(body)}`
+      window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(body)}`
       return
     }
 
@@ -74,10 +76,10 @@ export default function Contact() {
     <section id="contacto" className="scroll-mt-14 border-t border-line py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
-          index="05"
-          label="Contacto"
-          title="¿Tienes un sistema en mente?"
-          aside="Cuéntame qué necesitas resolver. Respondo personalmente, normalmente en menos de 24 horas."
+          index="06"
+          label={t.label}
+          title={t.title}
+          aside={t.aside}
         />
 
         <div className="grid gap-10 lg:grid-cols-12">
@@ -114,26 +116,26 @@ export default function Contact() {
                     <span className="flex h-10 w-10 items-center justify-center rounded-full border border-ok/40 bg-ok/10 text-ok">
                       <Check size={18} />
                     </span>
-                    <p className="mt-5 text-2xl font-semibold tracking-tight">Mensaje recibido.</p>
-                    <p className="mt-2 text-fg-2">Gracias por escribir. Te respondo pronto.</p>
+                    <p className="mt-5 text-2xl font-semibold tracking-tight">{t.sentTitle}</p>
+                    <p className="mt-2 text-fg-2">{t.sentBody}</p>
                     <button type="button" onClick={() => setStatus('idle')} className="link-underline mt-6 text-sm text-muted hover:text-fg">
-                      Enviar otro mensaje
+                      {t.again}
                     </button>
                   </motion.div>
                 ) : (
                   <motion.form key="form" onSubmit={onSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-5">
                     <div className="grid gap-5 sm:grid-cols-2">
-                      <Field label="Nombre" name="name" required autoComplete="name" placeholder="Tu nombre" />
-                      <Field label="Correo" name="email" type="email" required autoComplete="email" placeholder="tu@correo.com" />
+                      <Field label={t.name} name="name" required autoComplete="name" placeholder={t.namePh} />
+                      <Field label={t.email} name="email" type="email" required autoComplete="email" placeholder={t.emailPh} />
                     </div>
-                    <Field label="Empresa o institución" name="company" autoComplete="organization" placeholder="Opcional" />
-                    <Field label="Mensaje" name="message" required textarea placeholder="¿Qué necesitas construir?" />
+                    <Field label={t.company} name="company" autoComplete="organization" placeholder={t.companyPh} />
+                    <Field label={t.message} name="message" required textarea placeholder={t.messagePh} />
                     <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" />
 
                     <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
                       <p className="text-sm" aria-live="polite">
                         {status === 'error' && (
-                          <span className="text-accent">No se pudo enviar. Escríbeme a {profile.email}.</span>
+                          <span className="text-accent">{t.error} {profile.email}.</span>
                         )}
                       </p>
                       <button
@@ -141,7 +143,7 @@ export default function Contact() {
                         disabled={status === 'sending'}
                         className="inline-flex items-center gap-2 rounded-md bg-fg px-5 py-2.5 text-sm font-medium text-bg transition-colors hover:bg-white disabled:opacity-60"
                       >
-                        {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
+                        {status === 'sending' ? t.sending : t.send}
                         <Send size={14} />
                       </button>
                     </div>

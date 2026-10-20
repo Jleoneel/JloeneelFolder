@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import { ArrowDownToLine } from 'lucide-react'
-import { profile } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 
-export const sections = [
-  ['sobre-mi', 'Sobre mí'],
-  ['stack', 'Stack'],
-  ['proyectos', 'Proyectos'],
-  ['experiencia', 'Experiencia'],
-  ['contacto', 'Contacto'],
-]
+export const sectionIds = ['sobre-mi', 'stack', 'proyectos', 'referencias', 'experiencia', 'contacto']
 
 function useActiveSection() {
   const [active, setActive] = useState(null)
@@ -23,7 +17,7 @@ function useActiveSection() {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: '-45% 0px -50% 0px' },
     )
-    sections.forEach(([id]) => {
+    sectionIds.forEach((id) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
     })
@@ -41,7 +35,27 @@ export function Logo() {
   )
 }
 
+function LangSwitch() {
+  const { lang, setLang, t } = useI18n()
+  return (
+    <div role="group" aria-label={t.nav.language} className="flex rounded-md border border-line-2 p-0.5 font-mono text-[0.6875rem]">
+      {['es', 'en'].map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`rounded px-2 py-1 uppercase transition-colors ${lang === l ? 'bg-panel-2 text-fg' : 'text-muted hover:text-fg'}`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 export default function Nav() {
+  const { t, c } = useI18n()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const active = useActiveSection()
@@ -67,40 +81,41 @@ export default function Nav() {
         }`}
       >
         <motion.div className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-accent/70" style={{ scaleX: progress }} />
-        <nav className="container-x flex h-14 items-center justify-between" aria-label="Principal">
-          <a href="#top" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+        <nav className="container-x flex h-14 items-center justify-between gap-4" aria-label="Principal">
+          <a href="#top" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
             <Logo />
-            <span className="text-sm font-medium">Janerson Arrunategui</span>
+            <span className="text-sm font-medium">{c.profile.name}</span>
           </a>
 
-          <ul className="hidden items-center gap-1 lg:flex">
-            {sections.map(([id, label]) => (
+          <ul className="hidden items-center gap-0.5 lg:flex">
+            {sectionIds.map((id) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
-                  className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
+                  className={`rounded-md px-2.5 py-1.5 text-sm transition-colors ${
                     active === id ? 'bg-panel-2 text-fg' : 'text-muted hover:text-fg'
                   }`}
                 >
-                  {label}
+                  {t.nav.sections[id]}
                 </a>
               </li>
             ))}
           </ul>
 
           <div className="flex items-center gap-2">
+            <LangSwitch />
             <a
-              href={profile.cv}
+              href={c.profile.cv}
               download
               className="hidden items-center gap-2 rounded-md border border-line-2 px-3 py-1.5 text-sm text-fg-2 transition-colors hover:border-muted hover:text-fg sm:flex"
             >
               <ArrowDownToLine size={14} strokeWidth={1.75} />
-              CV
+              {t.nav.cv}
             </a>
             <button
               type="button"
               className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-md border border-line lg:hidden"
-              aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
@@ -121,7 +136,7 @@ export default function Nav() {
             transition={{ duration: 0.2 }}
           >
             <ul className="container-x">
-              {sections.map(([id, label], i) => (
+              {sectionIds.map((id, i) => (
                 <motion.li
                   key={id}
                   className="border-b border-line"
@@ -131,15 +146,15 @@ export default function Nav() {
                 >
                   <a href={`#${id}`} onClick={() => setOpen(false)} className="flex items-baseline gap-4 py-4">
                     <span className="font-mono text-xs text-dim">0{i + 1}</span>
-                    <span className="text-2xl font-medium tracking-tight">{label}</span>
+                    <span className="text-2xl font-medium tracking-tight">{t.nav.sections[id]}</span>
                   </a>
                 </motion.li>
               ))}
             </ul>
             <div className="container-x mt-8">
-              <a href={profile.cv} download className="inline-flex items-center gap-2 rounded-md bg-fg px-4 py-2.5 text-sm font-medium text-bg">
+              <a href={c.profile.cv} download className="inline-flex items-center gap-2 rounded-md bg-fg px-4 py-2.5 text-sm font-medium text-bg">
                 <ArrowDownToLine size={15} strokeWidth={1.75} />
-                Descargar CV
+                {t.nav.downloadCv}
               </a>
             </div>
           </motion.div>

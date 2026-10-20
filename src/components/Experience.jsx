@@ -1,10 +1,11 @@
 import { useRef } from 'react'
 import { motion, useScroll } from 'framer-motion'
-import { education, experience } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import SectionHeader from './SectionHeader.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Experience() {
+  const { t, c } = useI18n()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 70%', 'end 60%'] })
 
@@ -12,10 +13,10 @@ export default function Experience() {
     <section id="experiencia" className="scroll-mt-14 border-t border-line py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
-          index="04"
-          label="Experiencia"
-          title="Trayectoria profesional."
-          aside="Sector público, clientes privados y producto propio, desde marzo de 2025."
+          index="05"
+          label={t.experience.label}
+          title={t.experience.title}
+          aside={t.experience.aside}
         />
 
         <div className="grid gap-12 lg:grid-cols-12">
@@ -26,7 +27,7 @@ export default function Experience() {
               style={{ scaleY: scrollYProgress }}
             />
             <ol className="space-y-2">
-              {experience.map((item, i) => (
+              {c.experience.map((item, i) => (
                 <Reveal as="li" key={item.org} delay={i * 0.03} className="relative pl-9">
                   <span
                     className={`absolute top-[1.4rem] left-0 h-[11px] w-[11px] rounded-full border-2 ${
@@ -50,8 +51,8 @@ export default function Experience() {
 
           <div className="lg:col-span-4">
             <Reveal className="lg:sticky lg:top-24">
-              <p className="eyebrow mb-4">formación</p>
-              {education.map((e) => (
+              <p className="eyebrow mb-4">{t.experience.education}</p>
+              {c.education.map((e) => (
                 <div key={e.title} className="rounded-xl border border-line bg-panel p-5">
                   <p className="font-mono text-xs text-muted">{e.period}</p>
                   <h3 className="mt-3 text-lg font-medium tracking-tight">{e.title}</h3>

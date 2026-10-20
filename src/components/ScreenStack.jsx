@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { projects } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 
 // Pantalla más representativa de cada sistema (índice dentro de `screens`)
 const cover = { 'perro-viejo': 2 }
-const items = projects
-  .filter((p) => p.screens?.length)
-  .map((p) => ({ id: p.id, name: p.name, status: p.status, shot: p.screens[cover[p.id] ?? 0] }))
+const toItems = (projects) =>
+  projects
+    .filter((p) => p.screens?.length)
+    .map((p) => ({ id: p.id, name: p.name, status: p.status, shot: p.screens[cover[p.id] ?? 0] }))
 
 const INTERVAL = 4200
 const DEPTH = 3 // tarjetas visibles detrás de la principal
 
-function statusColor(status) {
-  return status.startsWith('En uso') || status === 'Desplegado' ? 'bg-warn' : 'bg-ok'
+function statusColor(id) {
+  return id === 'sith' || id === 'caba' ? 'bg-warn' : 'bg-ok'
 }
 
 /* Capturas reales de cada sistema apiladas; la del frente rota sola y lleva a su caso */
 export default function ScreenStack() {
+  const { t, c } = useI18n()
+  const items = toItems(c.projects)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const reduce = useReducedMotion()
@@ -71,12 +74,12 @@ export default function ScreenStack() {
               {pos === 0 && (
                 <span className="group absolute right-3 bottom-3 left-3 flex items-center justify-between gap-3 rounded-lg border border-line-2 bg-bg/85 px-3 py-2 backdrop-blur-md">
                   <span className="flex min-w-0 items-center gap-2.5">
-                    <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusColor(item.status)}`} />
+                    <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusColor(item.id)}`} />
                     <span className="truncate text-sm font-medium">{item.name}</span>
                     <span className="hidden truncate font-mono text-[0.6875rem] text-muted sm:inline">{item.status}</span>
                   </span>
                   <span className="flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] text-fg-2">
-                    Ver caso <ArrowUpRight size={13} />
+                    {t.hero.viewCase} <ArrowUpRight size={13} />
                   </span>
                 </span>
               )}
@@ -86,7 +89,7 @@ export default function ScreenStack() {
       </div>
 
       {/* Selector: cada proyecto con su barra de progreso */}
-      <div className="mt-5 grid gap-2" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }} role="tablist" aria-label="Sistemas">
+      <div className="mt-5 grid gap-2" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }} role="tablist" aria-label={t.hero.systems}>
         {items.map((item, i) => (
           <button
             key={item.id}

@@ -1,10 +1,13 @@
-import { projects } from '../data/content.js'
+import { ArrowUpRight, MessageCircle } from 'lucide-react'
+import { useI18n } from '../i18n/index.jsx'
 import SectionHeader from './SectionHeader.jsx'
 import Reveal from './Reveal.jsx'
 import Showcase, { useLightbox } from './Showcase.jsx'
 
-function Status({ status }) {
-  const color = status === 'Soporte' ? 'bg-dim' : status.startsWith('En uso') || status === 'Desplegado' ? 'bg-warn' : 'bg-ok'
+const statusColor = { sith: 'bg-warn', caba: 'bg-warn', iess: 'bg-dim' }
+
+function Status({ id, status }) {
+  const color = statusColor[id] ?? 'bg-ok'
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-2.5 py-1 font-mono text-[0.6875rem] text-fg-2">
       <span className={`h-1.5 w-1.5 rounded-full ${color}`} />
@@ -55,7 +58,7 @@ function ProjectHeader({ p, n }) {
       <span className="font-mono text-xs text-muted">{p.kicker}</span>
       <span className="flex flex-1 items-center justify-end gap-3">
         <span className="hidden font-mono text-xs text-dim sm:inline">{p.period}</span>
-        <Status status={p.status} />
+        <Status id={p.id} status={p.status} />
       </span>
     </div>
   )
@@ -69,7 +72,7 @@ function Phones({ items }) {
       <ol className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-6 md:px-0">
         {items.map((item, i) => (
           <li key={item.src} className="w-[48vw] shrink-0 snap-start sm:w-[30vw] md:w-auto">
-            <button type="button" onClick={() => open(i)} className="group block w-full text-left" aria-label={`Ampliar: ${item.title}`}>
+            <button type="button" onClick={() => open(i)} className="group block w-full text-left" aria-label={item.title}>
               <span className="flex aspect-[9/19] items-center justify-center">
                 <img
                   src={item.src}
@@ -92,6 +95,7 @@ function Phones({ items }) {
 }
 
 function Featured({ p }) {
+  const { t, c } = useI18n()
   return (
     <article id={p.id} className="scroll-mt-20">
       <Reveal>
@@ -120,6 +124,26 @@ function Featured({ p }) {
           <Reveal delay={0.1} className="mt-6">
             <Tags items={p.stack} />
           </Reveal>
+          <Reveal delay={0.12} className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={c.apartalo.bot}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-fg px-4 py-2.5 text-sm font-medium text-bg transition-colors hover:bg-white"
+            >
+              <MessageCircle size={15} />
+              {t.projects.tryBot}
+            </a>
+            <a
+              href={c.apartalo.site}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-line-2 px-4 py-2.5 text-sm font-medium text-fg-2 transition-colors hover:border-muted hover:text-fg"
+            >
+              {t.projects.visitSite}
+              <ArrowUpRight size={15} />
+            </a>
+          </Reveal>
         </div>
         <Reveal delay={0.1} className="min-w-0 lg:col-span-7">
           <Showcase items={p.screens} label="APÁRTALO" />
@@ -128,14 +152,14 @@ function Featured({ p }) {
 
       <Reveal className="mt-16">
         <div className="mb-6 flex items-baseline justify-between gap-4">
-          <h4 className="text-lg font-medium tracking-tight">Así reserva el cliente</h4>
-          <span className="font-mono text-xs text-dim">grabado en producción</span>
+          <h4 className="text-lg font-medium tracking-tight">{t.projects.howTitle}</h4>
+          <span className="font-mono text-xs text-dim">{t.projects.howNote}</span>
         </div>
         <Phones items={p.phones} />
       </Reveal>
 
       <Reveal className="mt-14">
-        <h4 className="mb-6 text-lg font-medium tracking-tight">Decisiones técnicas</h4>
+        <h4 className="mb-6 text-lg font-medium tracking-tight">{t.projects.decisions}</h4>
         <Highlights items={p.highlights} columns />
       </Reveal>
     </article>
@@ -143,6 +167,7 @@ function Featured({ p }) {
 }
 
 function Entry({ p, n, flip }) {
+  const { t } = useI18n()
   return (
     <article id={p.id} className="scroll-mt-20">
       <Reveal>
@@ -164,11 +189,11 @@ function Entry({ p, n, flip }) {
           </Reveal>
           <Reveal delay={0.1} className="mt-6">
             <dl className="mb-4 grid grid-cols-[5rem_1fr] gap-y-1 font-mono text-xs">
-              <dt className="text-dim">rol</dt>
+              <dt className="text-dim">{t.projects.role}</dt>
               <dd className="text-fg-2">{p.role}</dd>
               {p.deploy && (
                 <>
-                  <dt className="text-dim">deploy</dt>
+                  <dt className="text-dim">{t.projects.deploy}</dt>
                   <dd className="text-fg-2">{p.deploy}</dd>
                 </>
               )}
@@ -199,15 +224,16 @@ function Brief({ p, n }) {
 }
 
 export default function Projects() {
-  const [featured, ...rest] = projects
+  const { t, c } = useI18n()
+  const [featured, ...rest] = c.projects
   return (
     <section id="proyectos" className="scroll-mt-14 border-t border-line py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
           index="03"
-          label="Proyectos"
-          title="Sistemas en producción, no ejercicios."
-          aside="Ordenados por relevancia. Las capturas son de los sistemas reales corriendo con datos de demostración."
+          label={t.projects.label}
+          title={t.projects.title}
+          aside={t.projects.aside}
         />
         <div className="space-y-28 md:space-y-36">
           <Featured p={featured} />

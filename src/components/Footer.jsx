@@ -1,8 +1,10 @@
 import { ArrowUp } from 'lucide-react'
-import { profile } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import { Logo } from './Nav.jsx'
 
 export default function Footer() {
+  const { t, c } = useI18n()
+  const profile = c.profile
   return (
     <footer className="border-t border-line">
       <div className="container-x flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
@@ -20,13 +22,13 @@ export default function Footer() {
             LinkedIn
           </a>
           <a href={`mailto:${profile.email}`} className="link-underline hover:text-fg">
-            Correo
+            {t.footer.email}
           </a>
           <a
             href="#top"
             className="inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 transition-colors hover:border-line-2 hover:text-fg"
           >
-            Arriba <ArrowUp size={13} />
+            {t.footer.top} <ArrowUp size={13} />
           </a>
         </div>
       </div>

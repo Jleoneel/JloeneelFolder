@@ -1,4 +1,4 @@
-import { stack } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import SectionHeader from './SectionHeader.jsx'
 import Reveal from './Reveal.jsx'
 
@@ -8,18 +8,19 @@ const iconUrl = (slug) => icons[`../assets/stack/${slug}.svg`]
 const mono = new Set(['express', 'github', 'railway', 'prisma', 'django', 'mysql'])
 
 export default function Stack() {
+  const { t, c } = useI18n()
   return (
     <section id="stack" className="scroll-mt-14 border-t border-line py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
           index="02"
-          label="Stack tecnológico"
-          title="Herramientas con las que construyo y despliego."
-          aside="Cada tecnología de esta lista sostiene al menos uno de los sistemas que se muestran más abajo."
+          label={t.stack.label}
+          title={t.stack.title}
+          aside={t.stack.aside}
         />
 
         <div className="overflow-hidden rounded-xl border border-line">
-          {stack.map((group, gi) => (
+          {c.stack.map((group, gi) => (
             <Reveal key={group.group} delay={gi * 0.03}>
               <div className={`grid md:grid-cols-[13rem_1fr] ${gi ? 'border-t border-line' : ''}`}>
                 <div className="flex items-center gap-3 border-b border-line bg-bg-2 px-5 py-4 md:border-r md:border-b-0">
@@ -53,9 +54,8 @@ export default function Stack() {
 
         <Reveal>
           <p className="mt-6 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-            <span className="font-mono text-xs leading-5 text-dim">flujo con IA</span>
-            Claude, GitHub Copilot y Gemini para revisar arquitecturas, escribir código y documentar — con criterio
-            propio sobre lo que llega a producción.
+            <span className="font-mono text-xs leading-5 text-dim">{t.stack.aiLabel}</span>
+            {t.stack.ai}
           </p>
         </Reveal>
       </div>

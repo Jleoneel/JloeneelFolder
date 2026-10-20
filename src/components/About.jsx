@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, useInView } from 'framer-motion'
-import { stats } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import Credential from './Credential.jsx'
 import SectionHeader from './SectionHeader.jsx'
 import Reveal from './Reveal.jsx'
@@ -18,32 +18,25 @@ function Counter({ value, decimals = 0 }) {
 }
 
 export default function About() {
+  const { t, c } = useI18n()
   return (
     <section id="sobre-mi" className="scroll-mt-14 border-t border-line py-24 md:py-32">
       <div className="container-x">
-        <SectionHeader index="01" label="Sobre mí" title="Del levantamiento de requerimientos al servidor en producción." />
+        <SectionHeader index="01" label={t.about.label} title={t.about.title} />
 
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="space-y-5 text-[1.05rem] leading-relaxed text-fg-2 lg:col-span-7">
             <Reveal>
-              <p>
-                He participado en todas las etapas del ciclo de desarrollo: requerimientos, diseño de bases de
-                datos, desarrollo full stack, integración de servicios, despliegue y mantenimiento — para
-                instituciones públicas, clientes privados y producto propio.
-              </p>
+              <p>{t.about.p1}</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <p>
-                Me interesan los problemas que no aparecen en una demo: dos cobros que llegan al mismo tiempo, una
-                reserva duplicada bajo carga, un documento que necesita una firma con validez legal. Por eso he
-                implementado firma digital con certificados del Banco Central del Ecuador, OCR de cédulas por cámara
-                y control de concurrencia a nivel de base de datos.
-              </p>
+              <p>{t.about.p2}</p>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-fg">
-                Hoy desarrollo y opero <span className="font-medium">APÁRTALO</span>, un SaaS de reservas para
-                barberías por WhatsApp con clientes de pago activos.
+                {t.about.p3a}
+                <span className="font-medium">APÁRTALO</span>
+                {t.about.p3b}
               </p>
             </Reveal>
           </div>
@@ -54,7 +47,7 @@ export default function About() {
         </div>
 
         <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-xl border border-line lg:grid-cols-4">
-          {stats.map((s, i) => (
+          {c.stats.map((s, i) => (
             <Reveal
               key={s.label}
               delay={i * 0.06}

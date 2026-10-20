@@ -6,6 +6,7 @@ import Counter from 'yet-another-react-lightbox/plugins/counter'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { Maximize2 } from 'lucide-react'
 import BrowserFrame from './BrowserFrame.jsx'
+import { useI18n } from '../i18n/index.jsx'
 
 export function useLightbox(items) {
   const [index, setIndex] = useState(-1)
@@ -24,6 +25,7 @@ export function useLightbox(items) {
 
 /* Capturas en un marco de navegador, con pestañas para recorrer el sistema */
 export default function Showcase({ items, label }) {
+  const { t } = useI18n()
   const [active, setActive] = useState(0)
   const [open, lightbox] = useLightbox(items)
   if (!items?.length) return null
@@ -38,7 +40,7 @@ export default function Showcase({ items, label }) {
             type="button"
             onClick={() => open(active)}
             className="flex h-6 w-6 items-center justify-center rounded text-muted transition-colors hover:bg-panel-2 hover:text-fg"
-            aria-label="Ver en pantalla completa"
+            aria-label={t.projects.fullscreen}
           >
             <Maximize2 size={13} strokeWidth={1.75} />
           </button>
@@ -48,7 +50,7 @@ export default function Showcase({ items, label }) {
           type="button"
           onClick={() => open(active)}
           className="relative block aspect-[16/10] w-full overflow-hidden bg-bg-2"
-          aria-label={`Ampliar: ${current.title}`}
+          aria-label={`${t.projects.enlarge}: ${current.title}`}
         >
           <AnimatePresence initial={false} mode="popLayout">
             <motion.img

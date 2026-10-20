@@ -13,6 +13,12 @@ export const profile = {
   cv: '/assets/cv-janerson-arrunategui.pdf',
 }
 
+// Cambiar aquí cuando APÁRTALO tenga su dominio definitivo
+export const apartalo = {
+  site: 'https://barbersaas-ec.duckdns.org/',
+  bot: 'https://wa.me/593999717366?text=AGENDA',
+}
+
 export const stats = [
   { value: 6, suffix: '', label: 'Sistemas construidos', note: 'de cero a producción' },
   { value: 5, suffix: '', label: 'Clientes e instituciones', note: 'públicas y privadas' },
@@ -262,9 +268,9 @@ export const projects = [
     kicker: 'Institucional · Hospital General IESS',
     period: '03/2025 — 07/2025',
     role: 'Desarrollador full stack',
-    headline: 'Desarrollo y soporte sobre un sistema hospitalario administrativo en producción.',
+    headline: 'Módulos web para la gestión hospitalaria, sobre un sistema en producción.',
     summary:
-      'Formularios, paneles de control y pantallas internas para un sistema activo; optimización de consultas SQL y corrección de flujos en producción.',
+      'Módulo de visualización y análisis estadístico del ingreso de pacientes en Emergencia, y módulo para el área de Derivaciones que agilizó procesos que antes eran manuales. Además, soporte técnico a distintas áreas del hospital.',
     highlights: [],
     stack: ['SQL', 'Git'],
     status: 'Soporte',
@@ -314,7 +320,7 @@ export const experience = [
     role: 'Desarrollador full stack',
     org: 'Hospital General IESS Manta',
     type: 'Sector público',
-    note: 'Módulos, paneles y optimización SQL en sistema en producción.',
+    note: 'Módulos de estadística de Emergencia y de Derivaciones; soporte técnico.',
   },
 ]
 
@@ -324,5 +330,42 @@ export const education = [
     title: 'Ingeniero de Software',
     org: 'Universidad Técnica de Manabí',
     note: 'Registro SENESCYT 1009-2026-3425563',
+  },
+]
+
+// Extractos textuales de las certificaciones laborales (Drive: profile.certifications)
+export const testimonials = [
+  {
+    id: 'perro-viejo',
+    quote:
+      'El sistema desarrollado permitió mejorar el control de las operaciones diarias, reducir el manejo manual de la información y facilitar la administración del negocio.',
+    extra: 'Demostró responsabilidad, profesionalismo, iniciativa y compromiso en el cumplimiento de las actividades encomendadas.',
+    author: 'Isaac Newton Moreira Mera',
+    position: 'Propietario',
+    org: 'Billar Club El Perro Viejo',
+    built: 'Sistema de gestión: alquiler de mesas, consumos, inventario y ventas.',
+    date: 'Julio 2026',
+    featured: true,
+  },
+  {
+    id: 'hpvcb',
+    quote:
+      'Cumplió con las actividades encomendadas de manera responsable y demostrando competencias técnicas acordes a los requerimientos del proyecto.',
+    author: 'Ing. Luis Carlos Vergara Mendoza',
+    position: 'Coordinador de Gestión de TICs',
+    org: 'Hospital General Dr. Verdi Cevallos Balda',
+    built: 'Sistema web de acciones de personal, permisos por horas y vacaciones, desplegado en la intranet.',
+    date: 'Abril 2026',
+  },
+  {
+    id: 'iess',
+    quote:
+      'Desarrollo de módulo web para el área de Derivaciones, optimizando y agilizando procesos previamente manuales.',
+    extra: 'Cumplió con las actividades encomendadas con responsabilidad, demostrando competencias técnicas acordes a los requerimientos institucionales.',
+    author: 'Ing. Marcos Antonio Menéndez Zambrano',
+    position: 'Jefe del Departamento de TICs',
+    org: 'Hospital General Manta — IESS',
+    built: 'Módulos web de estadística de Emergencia y de Derivaciones.',
+    date: '2025',
   },
 ]

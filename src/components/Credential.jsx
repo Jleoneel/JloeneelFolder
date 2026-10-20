@@ -1,17 +1,11 @@
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { profile } from '../data/content.js'
+import { useI18n } from '../i18n/index.jsx'
 import { Logo } from './Nav.jsx'
-
-const facts = [
-  ['ubicación', 'Portoviejo, Manabí — EC'],
-  ['formación', 'Ingeniería de Software — UTM'],
-  ['senescyt', '1009-2026-3425563'],
-  ['idiomas', 'Español · Inglés básico–intermedio'],
-  ['enfoque', 'Sistemas empresariales y SaaS'],
-]
 
 /* Credencial con inclinación 3D que sigue al puntero (se queda quieta en táctil y con movimiento reducido) */
 export default function Credential() {
+  const { t } = useI18n()
+  const k = t.credential
   const x = useMotionValue(0.5)
   const y = useMotionValue(0.5)
   const spring = { stiffness: 150, damping: 18, mass: 0.6 }
@@ -43,7 +37,7 @@ export default function Credential() {
         <motion.div className="pointer-events-none absolute inset-0 z-10" style={{ background: glare }} />
 
         <div className="flex items-center justify-between border-b border-line px-5 py-3">
-          <span className="font-mono text-[0.6875rem] tracking-wide text-muted">CREDENCIAL · ING. SOFTWARE</span>
+          <span className="font-mono text-[0.6875rem] tracking-wide text-muted">{k.header}</span>
           <Logo />
         </div>
 
@@ -51,7 +45,7 @@ export default function Credential() {
           <div className="relative self-start overflow-hidden rounded-lg border border-line bg-bg">
             <img
               src="/assets/img/perfil/janerson.webp"
-              alt={`Fotografía de ${profile.name}`}
+              alt={k.photoAlt}
               width="600"
               height="750"
               loading="lazy"
@@ -61,25 +55,25 @@ export default function Credential() {
           </div>
 
           <div className="flex min-w-0 flex-col">
-            <p className="font-mono text-[0.6875rem] text-dim">nombre</p>
+            <p className="font-mono text-[0.6875rem] text-dim">{k.name}</p>
             <p className="mt-1 text-lg leading-tight font-semibold tracking-tight">
               Janerson Leonel
               <br />
               Arrunategui Moreira
             </p>
-            <p className="mt-3 font-mono text-[0.6875rem] text-dim">cargo</p>
-            <p className="mt-1 text-sm text-fg-2">Ingeniero de Software · Full Stack</p>
-            <p className="mt-1 text-sm text-fg-2">Fundador de APÁRTALO</p>
+            <p className="mt-3 font-mono text-[0.6875rem] text-dim">{k.position}</p>
+            <p className="mt-1 text-sm text-fg-2">{k.role}</p>
+            <p className="mt-1 text-sm text-fg-2">{k.founder}</p>
 
             <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-full border border-ok/30 bg-ok/10 px-2.5 py-1 font-mono text-[0.6875rem] text-ok">
               <span className="h-1.5 w-1.5 rounded-full bg-ok" />
-              Disponible
+              {k.available}
             </span>
           </div>
         </div>
 
         <dl className="border-t border-line">
-          {facts.map(([k, v]) => (
+          {k.facts.map(([k, v]) => (
             <div key={k} className="grid grid-cols-[6rem_1fr] gap-4 border-b border-line/70 px-5 py-2.5 last:border-b-0">
               <dt className="font-mono text-xs leading-6 text-dim">{k}</dt>
               <dd className="text-sm leading-6 text-fg-2">{v}</dd>
