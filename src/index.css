@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0b0c0e;
+  --color-bg-2: #111215;
+  --color-panel: #15171b;
+  --color-panel-2: #1b1d22;
+  --color-line: #24272d;
+  --color-line-2: #31353c;
+  --color-fg: #ededee;
+  --color-fg-2: #b4b6bb;
+  --color-muted: #7d8088;
+  --color-dim: #565a62;
+  --color-accent: #ff6b35;
+  --color-ok: #3ecf8e;
+  --color-warn: #f5b041;
+
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-feature-settings: 'ss01', 'ss02', 'cv11';
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #0b0c0e;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+}
+
+/* Cuadrícula técnica de fondo, desvanecida hacia abajo */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 30%, transparent 75%);
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s var(--ease-out-soft);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lightbox alineado con la paleta */
+.yarl__root {
+  --yarl__color_backdrop: rgba(8, 9, 11, 0.97);
+  --yarl__slide_description_color: #b4b6bb;
+  --yarl__counter_color: #7d8088;
+}
+.yarl__slide_description {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+}
+.yarl__counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
